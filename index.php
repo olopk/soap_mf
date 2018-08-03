@@ -1,3 +1,8 @@
+<?php @include_once('engine.php'); 
+session_start();
+$_SESSION['logged'] = false;
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,37 +12,21 @@
         <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <body>
-        <?php @include_once('engine.php'); ?>
+        
         
         <div class="container">
-            <h1>Contractor check</h1>
-            <h3>This is a table created dynamically</h3>
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">lp</th>
-                      <th scope="col">Firma</th>
-                      <th scope="col">Nip</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Ostatnia Aktualizacja</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                    <?php
-                      $lp = 0;
-                      foreach($records_checked as $row){
-                          $lp++; 
-                          echo '<th scope="row">'.$lp.'</th>';
-                          echo '<td>'.$row['nazwa'].'</td>';
-                          echo '<td>'.$row['nip'].'</td>';
-                          echo '<td>'.$row['komunikat'].'</td>';
-                          echo '<td>'.$row['data_utworzenia'].'</td>';
-                          echo '</tr>';
-                      }
-                    ?>
-                  </tbody>
-                </table>
+            
+            <?php 
+            
+                if ($_SESSION['logged'] == false){
+                    @include_once('login.php');
+                }
+                else{
+                    @include_once('dashboard.php');
+                }
+            
+            ?>
+            
         </div>
         
         
