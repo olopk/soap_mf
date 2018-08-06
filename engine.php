@@ -1,31 +1,31 @@
 <?php
 
-class Dbc{
-    private $type = '';
-    private $host = '';
-    private $dbname = '';
-    private $username = '';
-    private $password = '';
-    public $conn = '';
-    
-    function __construct($type, $host, $dbname, $username, $password){
-        try{
-        $conn = new PDO("$type:host=$host;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "it works.";
-        }
-        catch(PDOException $e){
-            echo "Something goes wrong: " . $e->getMessage();
-        }
-    }
-    
-}
+//class Dbc{
+//    private $type = '';
+//    private $host = '';
+//    private $dbname = '';
+//    private $username = '';
+//    private $password = '';
+//    public $conn = '';
+//    
+//    function __construct($type, $host, $dbname, $username, $password){
+//        try{
+//        $conn = new PDO("$type:host=$host;dbname=$dbname", $username, $password);
+//        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//        echo "it works.";
+//        }
+//        catch(PDOException $e){
+//            echo "Something goes wrong: " . $e->getMessage();
+//        }
+//    }
+//    
+//}
 
-$test = new Dbc('mysql','localhost','subisekt','root','');
-//$records = $test->$conn->query('SELECT * FROM kontrahenci');  
-//var_dump($records);
-
-$conn = new PDO("mysql:host=localhost;dbname=subisekt", 'root', '');
+//$test = new Dbc('mysql','localhost','subisekt','root','');
+////$records = $test->$conn->query('SELECT * FROM kontrahenci');  
+////var_dump($records);
+//
+//$conn = new PDO("mysql:host=localhost;dbname=subisekt", 'root', '');
 
 
 function load(){
@@ -36,7 +36,7 @@ function load(){
         $servername = 'localhost';
         $username = 'root';
         $password = '';
-        $wsdl = 'http://localhost/soap_mf/wsdl.xml';
+        $wsdl = 'http://localhost/soap/wsdl.xml';
         //connection to the Subiect DB to retrieve the contractors data.
 
         try{

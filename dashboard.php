@@ -1,5 +1,5 @@
-<h1>Contractor check</h1>
-<h3>This is a table created dynamically</h3>
+<?php @include_once('engine.php');?>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -12,8 +12,8 @@
   </thead>
   <tbody>
     <?php
+      
       $records_checked = load();
-
       $lp = 0;
       foreach($records_checked as $row){
           $lp++; 
