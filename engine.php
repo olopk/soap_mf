@@ -28,6 +28,7 @@
 //$conn = new PDO("mysql:host=localhost;dbname=subisekt", 'root', '');
 
 
+
 function load(){
     
         $records = '';
@@ -40,7 +41,7 @@ function load(){
         //connection to the Subiect DB to retrieve the contractors data.
 
         try{
-            $conn = new PDO("mysql:host=$servername;dbname=subiekt", $username, $password);
+            $conn = new PDO("mysql:host=$servername;dbname=subdiekt", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
             $records = $conn->query('SELECT * FROM kontrahenci');     
         }

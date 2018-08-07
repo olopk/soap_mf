@@ -1,7 +1,10 @@
 <?php 
 @include('login_check.php');
 session_start();
-$_SESSION['logged'] = false;
+
+if($_GET['page']=='logout'){
+    $_SESSION['logged'] = false;
+}
 
 ?>
 <!DOCTYPE html>
@@ -16,16 +19,17 @@ $_SESSION['logged'] = false;
     <body>
         
         <div class="container">
-            <?php                
+            <?php
+            
                 if($_POST['submit'] == 'send'){
                   $_SESSION['logged'] = loginCheck($_POST['login'], $_POST['pass']);
                 }
                 if ($_SESSION['logged'] == false){
+                    @include('header.php');
                     @include_once('login.php');
                 }
                 else{
                     @include('header.php');
-                    
                     if($_GET['page'] == 'settings'){
                         @include('settings.php');
                     }

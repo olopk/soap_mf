@@ -1,4 +1,4 @@
-<form class="form" action="" method="post">
+<form class="box" action="" method="post">
     <div class="form-group">
         <label for="login">Login</label>
         <input type="text" class="form-control" placeholder="Your Login" name="login">
