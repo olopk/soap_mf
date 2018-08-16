@@ -1,26 +1,25 @@
-<!--
-<?php
+<!--<?php @include_once('engine.php');?>-->
 
-session_start();
-
-?>
--->
 <div class="box">
     <span>Rodzaj sterownika</span>
     <select name="driver" form="db" id="select">
-            <option value="MySQL">MySQL</option>
+            <option value="mysql">MySQL</option>
             <option value="PostgreSQL">PostgreSQL</option>
             <option value="Firebird">Firebird</option>
             <option value="MSSQL">MSSQL</option>
     </select>
     <form action="" method="post" id="db">
         <form-group>
+            <label for="servername">adres serwera</label>
+            <input type="text" class="form-control" name="servername" id="servername" placeholder="adres serwera" required>
+        </form-group>
+        <form-group>
             <label for="login">login</label>
             <input type="text" class="form-control" name="login" id="login" placeholder="Login" required>
         </form-group>
         <form-group>
             <label for="password">hasło</label>
-            <input type="text" class="form-control" name="password" placeholder="Hasło" required>
+            <input type="text" class="form-control" name="password" placeholder="Hasło">
         </form-group>
         <form-group>
             <label for="dbname">nazwa bazy danych</label>
@@ -38,6 +37,6 @@ session_start();
             <label for="col_contractor">nazwa kolumny z polem kontrahent</label>
             <input type="text" class="form-control" name="col_contractor" required>
         </form-group>
-        <button type="submit" class="btn btn-primary" name="save" id="save">Zapisz</button>
+        <button type="submit" class="btn btn-primary" name="save" value="save" id="save">Zapisz</button>
     </form>
 </div>

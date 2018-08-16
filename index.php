@@ -31,9 +31,16 @@ if($_GET['page']=='logout'){
                 else{
                     @include('header.php');
                     if($_GET['page'] == 'settings'){
+                        @include_once('engine.php');
                         @include('settings.php');
+                        if($_POST['save'] == 'save'){
+                            echo $_POST['dbname'];
+                            echo $_POST['driver'];
+            credentialsSave($_POST['driver'],$_POST['servername'],$_POST['login'],$_POST['password'],$_POST['dbname'],$_POST['tbname'],$_POST['col_nip'],$_POST['col_contractor']);
+                        }
                     }
                     else{
+                        @include_once('engine.php');
                         @include_once('dashboard.php');
                     }
                 }       

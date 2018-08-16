@@ -1,34 +1,5 @@
 <?php
 
-//class Dbc{
-//    private $type = '';
-//    private $host = '';
-//    private $dbname = '';
-//    private $username = '';
-//    private $password = '';
-//    public $conn = '';
-//    
-//    function __construct($type, $host, $dbname, $username, $password){
-//        try{
-//        $conn = new PDO("$type:host=$host;dbname=$dbname", $username, $password);
-//        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//        echo "it works.";
-//        }
-//        catch(PDOException $e){
-//            echo "Something goes wrong: " . $e->getMessage();
-//        }
-//    }
-//    
-//}
-
-//$test = new Dbc('mysql','localhost','subisekt','root','');
-////$records = $test->$conn->query('SELECT * FROM kontrahenci');  
-////var_dump($records);
-//
-//$conn = new PDO("mysql:host=localhost;dbname=subisekt", 'root', '');
-
-
-
 function load(){
     
         $records = '';
@@ -80,5 +51,22 @@ function load(){
 
     return $records_checked;
 };
+
+function credentialsSave($driver, $servername, $login, $pass, $dbname, $tbname, $col_nip, $col_contractor){
+    try{
+        $conn = new PDO("$driver:host=$servername;dbname=$dbname", $login, $pass);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $q = "SELECT ".$col_nip." AND ".$col_contractor." FROM ".$tbname.";" ;    
+        $records = $conn->query($q); 
+        $conn = null;
+        $conn2 = newPDO()
+        
+    }
+    catch(PDOException $e){
+        echo "cos nie bangla : " . $e->getMessage();
+    }
+}
+
+
 
 ?>
