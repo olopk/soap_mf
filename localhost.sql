@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 03 Sie 2018, 13:48
--- Wersja serwera: 10.1.32-MariaDB
--- Wersja PHP: 7.2.5
+-- Czas generowania: 18 Sie 2018, 11:50
+-- Wersja serwera: 10.1.28-MariaDB
+-- Wersja PHP: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -27,6 +27,31 @@ USE `aplikacja`;
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `db_credentials`
+--
+
+CREATE TABLE `db_credentials` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `dbdriver` varchar(10) COLLATE utf8_polish_ci NOT NULL,
+  `servername` varchar(10) COLLATE utf8_polish_ci NOT NULL,
+  `dblogin` varchar(10) COLLATE utf8_polish_ci NOT NULL,
+  `dbpass` varchar(10) COLLATE utf8_polish_ci NOT NULL,
+  `dbname` varchar(10) COLLATE utf8_polish_ci NOT NULL,
+  `tbname` varchar(10) COLLATE utf8_polish_ci NOT NULL,
+  `col_nip` varchar(10) COLLATE utf8_polish_ci NOT NULL,
+  `col_kon` varchar(10) COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `db_credentials`
+--
+
+INSERT INTO `db_credentials` (`id`, `dbdriver`, `servername`, `dblogin`, `dbpass`, `dbname`, `tbname`, `col_nip`, `col_kon`) VALUES
+(6, 'mysql', 'localhost', 'root', '', 'subiekt', 'kontrahenc', 'nip', 'nazwa');
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `kontrahent_status`
 --
 
@@ -39,17 +64,6 @@ CREATE TABLE `kontrahent_status` (
   `data_utworzenia` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `data_aktualizacji` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
---
--- Zrzut danych tabeli `kontrahent_status`
---
-
-INSERT INTO `kontrahent_status` (`id`, `nazwa`, `nip`, `kod`, `komunikat`, `data_utworzenia`, `data_aktualizacji`) VALUES
-(12, 'OpenIT', 8431614194, 'C', 'Podmiot o podanym identyfikatorze podatkowym NIP jest zarejestrowany jako podatnik VAT czynny', '2018-08-02 15:43:12', '0000-00-00 00:00:00'),
-(13, 'Firma Krzak', 843000000, 'I', 'Niepoprawny Numer Identyfikacji Podatkowej', '2018-08-02 15:43:12', '0000-00-00 00:00:00'),
-(14, 'Przedsiebiorstwo komunalne', 8430003548, 'C', 'Podmiot o podanym identyfikatorze podatkowym NIP jest zarejestrowany jako podatnik VAT czynny', '2018-08-02 15:43:12', '0000-00-00 00:00:00'),
-(15, 'Test', 999111666, 'I', 'Niepoprawny Numer Identyfikacji Podatkowej', '2018-08-02 17:52:06', '0000-00-00 00:00:00'),
-(16, 'Costam ktostam', 222444555, 'I', 'Niepoprawny Numer Identyfikacji Podatkowej', '2018-08-02 17:53:55', '2018-08-02 17:57:52');
 
 -- --------------------------------------------------------
 
@@ -70,20 +84,27 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `create_time`, `update_time`) VALUES
-(1, 'Olek', 'Olek', '2018-08-03 11:01:20', '2018-08-03 11:01:20');
+(1, 'Olek', 'Olek', '2018-08-03 11:01:20', '2018-08-03 11:01:20'),
+(2, 'Marek', 'Petarek', '2018-08-04 09:41:39', '2018-08-04 09:41:39');
 
 --
 -- Indeksy dla zrzutów tabel
 --
 
 --
--- Indeksy dla tabeli `kontrahent_status`
+-- Indexes for table `db_credentials`
+--
+ALTER TABLE `db_credentials`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kontrahent_status`
 --
 ALTER TABLE `kontrahent_status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
@@ -93,16 +114,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `db_credentials`
+--
+ALTER TABLE `db_credentials`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT dla tabeli `kontrahent_status`
 --
 ALTER TABLE `kontrahent_status`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Baza danych: `subiekt`
 --
@@ -137,7 +164,7 @@ INSERT INTO `kontrahenci` (`id`, `nazwa`, `nip`) VALUES
 --
 
 --
--- Indeksy dla tabeli `kontrahenci`
+-- Indexes for table `kontrahenci`
 --
 ALTER TABLE `kontrahenci`
   ADD PRIMARY KEY (`id`);

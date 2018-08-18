@@ -1,5 +1,17 @@
 <?php
 
+function credentialsLoad(){
+    
+    try{
+        $conn = new PDO("mysql:host=localhost;dbname=aplikacja", 'root', '');
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch(PDOException $e){
+        echo "Cannot load the credentials. Error code: " . $e->getMessage();
+    
+    }
+}
+
 function load(){
     
         $records = '';
@@ -54,13 +66,22 @@ function load(){
 
 function credentialsSave($driver, $servername, $login, $pass, $dbname, $tbname, $col_nip, $col_contractor){
     try{
+        //try to connect using the user input credentials
         $conn = new PDO("$driver:host=$servername;dbname=$dbname", $login, $pass);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //try to retrieve data using the tbname and colnames inputed by user
         $q = "SELECT ".$col_nip." AND ".$col_contractor." FROM ".$tbname.";" ;    
         $records = $conn->query($q); 
+        //i dont know if there is any sense but i decided to close the connection with the db above.
         $conn = null;
-        $conn2 = newPDO()
-        
+        //i open a new connection to save the credentials in the app db.
+        $conn = new PDO("mysql:host=localhost;dbname=aplikacja", 'root', '');
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //prepare a quer to clear the eventual existing record in the db and concatenate it to the query that will insert the new values.
+        $i="DELETE FROM db_credentials; ";
+        $i.="INSERT INTO db_credentials (dbdriver, servername, dblogin, dbpass, dbname, tbname, col_nip, col_kon) VALUES ('".$driver."', '".$servername."', '".$login."', '".$pass."', '".$dbname."', '".$tbname."', '".$col_nip."', '".$col_contractor."')";
+        //run the query.
+        $insert = $conn->query($i); 
     }
     catch(PDOException $e){
         echo "cos nie bangla : " . $e->getMessage();
